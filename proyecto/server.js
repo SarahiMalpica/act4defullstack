@@ -1,24 +1,32 @@
 require("dotenv").config();
 
-const http = require("http");
 const { connectDB } = require("./src/config/db");
 const app = require("./src/app");
 
 const PORT = process.env.PORT || 5000;
+let dbPromise = null;
 
-async function start() {
-  console.log("Iniciando servidor...");
-
-  await connectDB(process.env.MONGO_URI);
-
-  const server = http.createServer(app);
-
-  server.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  });
+function ensureDb() {
+  if (!dbPromise) {
+    dbPromise = connectDB(process.env.MONGO_URI);
+  }
+  return dbPromise;
 }
 
-start().catch((err) => {
-  console.error("Error al iniciar:", err);
-  process.exit(1);
-});
+if (require.main === module) {
+  ensureDb()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`Servidor corriendo en http://localhost:${PORT}`);
+      });
+    })
+    .catch((err) => {
+      console.error("Error al iniciar:", err);
+      process.exit(1);
+    });
+}
+
+module.exports = async (req, res) => {
+  await ensureDb();
+  return app(req, res);
+};
