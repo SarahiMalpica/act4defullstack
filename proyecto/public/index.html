@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestion de Productos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="card" id="section-login">
+    <h1>🔐 Acceso</h1>
+    <input id="username" type="text" placeholder="Usuario" />
+    <input id="password" type="password" placeholder="Contrasena" />
+    <button class="btn primary" id="loginBtn">Iniciar sesion</button>
+    <button class="btn secondary" id="registerBtn">Registrarse</button>
+    <section class="login-logs">
+      <h2>🕘 Ultimos accesos</h2>
+      <div id="login-log-list" class="login-log-list"></div>
+    </section>
+  </section>
+
+  <section class="card" id="section-products" style="display:none;">
+    <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <h1>📦 Productos</h1>
+      <button class="btn danger" id="logoutBtn">Cerrar sesion</button>
+    </header>
+
+    <section>
+      <h2>➕ Agregar producto</h2>
+      <div class="grid">
+        <input id="p-name" placeholder="Nombre" />
+        <input id="p-price" type="number" placeholder="Precio" />
+        <input id="p-stock" type="number" placeholder="Stock" />
+        <input id="p-desc" placeholder="Descripcion (opcional)" />
+        <button class="btn primary" id="createBtn">Guardar</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>📋 Lista</h2>
+      <div id="list"></div>
+    </section>
+  </section>
+
+  <div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>✏️ Editar producto</h2>
+      <input id="e-name" placeholder="Nombre" />
+      <input id="e-price" type="number" placeholder="Precio" />
+      <input id="e-stock" type="number" placeholder="Stock" />
+      <div class="row end">
+        <button class="btn secondary" id="cancelEditBtn">Cancelar</button>
+        <button class="btn primary" id="saveEditBtn">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

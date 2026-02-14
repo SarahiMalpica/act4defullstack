@@ -1,0 +1,18 @@
+# Dependencias
+node_modules/
+
+# Variables de entorno (contraseñas Mongo)
+.env
+
+# Cobertura de pruebas (Jest)
+coverage/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Vercel local metadata
+.vercel/
+
